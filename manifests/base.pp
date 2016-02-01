@@ -1,15 +1,30 @@
+package {'sudo':
+  ensure => present
+}
+
 package {'wget':
   ensure => present
 } ->
-
 exec {'download splunk':
-  command => '/usr/bin/wget -O /tmp/splunk-6.3.2.rpm \'http://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=6.3.2&product=splunk&filename=splunk-6.3.2-aaff59bb082c-linux-2.6-x86_64.rpm&wget=true\'',
+  command => "/usr/bin/wget -O /tmp/splunk.rpm 'http://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=6.3.2&product=splunk&filename=${splunk_filename}&wget=true'",
 } ->
 
 exec {'install splunk':
   path  => '/bin:/sbin:/usr/bin:/usr/sbin',
-  command => 'rpm -ivh /tmp/splunk-6.3.2.rpm'
+  command => 'rpm -ivh /tmp/splunk.rpm'
 } ->
+
+file {'/var/opt/splunk':
+  ensure => directory,
+  owner  => $splunk_user
+} ->
+
+exec {'copy etc':
+  path  => '/bin:/sbin:/usr/bin:/usr/sbin',
+  command => "cp -R ${splunk_home}/etc ${splunk_backup_default_etc} ; rm -fR ${splunk_home}/etc"
+} ->
+
+
 # Cleaning unused packages to decrease image size
 exec {'erase splunk installer':
   path  => '/bin:/sbin:/usr/bin:/usr/sbin',
@@ -18,6 +33,10 @@ exec {'erase splunk installer':
 exec {'erase cache':
   path  => '/bin:/sbin:/usr/bin:/usr/sbin',
   command => 'rm -rf /var/cache/*'
+} ->
+exec {'erase logs':
+  path  => '/bin:/sbin:/usr/bin:/usr/sbin',
+  command => 'rm -rf /var/log/*'
 } ->
 
 package {'openssh': ensure => absent }

@@ -27,76 +27,46 @@ For previous versions or newest releases see other branches.
 
 ## Introduction
 
-> NOTE: I'm working at Splunk, but this is not an official Splunk images.
-> I build them in my free time when I'm not at work. I have some knowledge
-> about Splunk, but you should think twice before putting them in
-> production. I run these images on my own home server just for
-> my personal needs. If you have any issues - feel free to open a
-> [bug](https://github.com/outcoldman/docker-splunk/issues).
 
-Dockerfiles to build [Splunk](https://splunk.com) including Enterpise, Light and Universal Forwarder.
+Dockerfiles to build [Splunk](https://splunk.com)
 
-> Examples below show you how to pull and start Splunk Enterprise. If you want to use Splunk Light or Universal Forwarder - you just need to change tags to add `-light` or `-forwarder` and use `splunklight` and `universalforwarder` folders.
 
 ### Version
 
 * Version: `6.3.2`
-* Build: `f3e41e4b37b2`
+
 
 ## Installation
 
-Pull the image from the [docker registry](https://registry.hub.docker.com/u/outcoldman/splunk/). This is the recommended method of installation as it is easier to update image. These builds are performed by the **Docker Trusted Build** service.
+Pull the image from docker hub.
 
 ```bash
-docker pull outcoldman/splunk:6.3.2
-```
-
-Or you can pull latest version.
-
-```bash
-docker pull outcoldman/splunk:latest
+docker pull ffquintella/docker-splunk
 ```
 
 Alternately you can build the image locally.
 
 ```bash
-git clone https://github.com/outcoldman/docker-splunk.git
-cd docker-splunk/splunk
-docker build --tag="$USER/splunk" .
+git clone https://github.com/ffquintella/docker-splunk.git
+cd docker-splunk
+./build.sh
 ```
 
 ## Quick Start
 
-To manually start Splunk Enterprise container 
+To manually start Splunk Enterprise container
 
 ```bash
-docker run --hostname splunk -p 8000:8000 -d outcoldman/splunk:6.3.2
+docker run --hostname splunk -p 8000:8000 -d ffquintella/docker-splunk
 ```
 
 This docker image has two data volumes `/opt/splunk/etc` and `/opt/splunk/var` (See [Data Store](#data-store)). To avoid losing any data when container is stopped/deleted mount these volumes from docker volume containers (see [Managing data in containers](https://docs.docker.com/userguide/dockervolumes/))
 
 ```bash
 docker run --name vsplunk -v /opt/splunk/etc -v /opt/splunk/var busybox
-docker run --hostname splunk --name splunk --volumes-from=vsplunk -p 8000:8000 -d outcoldman/splunk:6.3.2
+docker run --hostname splunk --name splunk --volumes-from=vsplunk -p 8000:8000 -d ffquintella/docker-splunk
 ```
 
-Or if you use [docker-compose](https://docs.docker.com/compose/)
-
-```
-vsplunk:
-  image: busybox
-  volumes:
-    - /opt/splunk/etc
-    - /opt/splunk/var
-
-splunk:
-  image: outcoldman/splunk:6.3.2
-  hostname: splunk
-  volumes_from:
-    - vsplunk
-  ports:
-    - 8000:8000
-```
 
 ## Configuration
 
@@ -122,7 +92,7 @@ Next ports are exposed
 * `1514` - Network Input (not used by default) (All Splunk products)
 * `8088` - HTTP Event Collector
 
-> We are using `1514` instead of standard `514` syslog port because ports below 
+> We are using `1514` instead of standard `514` syslog port because ports below
 > 1024 are reserved for root access only. See [Run Splunk Enterprise as a different or non-root user](http://docs.splunk.com/Documentation/Splunk/latest/Installation/RunSplunkasadifferentornon-rootuser).
 
 ### Entrypoint
