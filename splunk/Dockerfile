@@ -1,16 +1,11 @@
-FROM ubuntu:trusty
+FROM ffquintella/docker-puppet:latest
 
-MAINTAINER Denis Gladkikh <docker-splunk@denis.gladkikh.email>
+MAINTAINER Felipe Quintella <docker-puppet@felipe.quintella.email>
 
-ENV SPLUNK_PRODUCT splunk
-ENV SPLUNK_VERSION 6.3.2
-ENV SPLUNK_BUILD aaff59bb082c
-ENV SPLUNK_FILENAME splunk-${SPLUNK_VERSION}-${SPLUNK_BUILD}-Linux-x86_64.tgz
-
-ENV SPLUNK_HOME /opt/splunk
-ENV SPLUNK_GROUP splunk
-ENV SPLUNK_USER splunk
-ENV SPLUNK_BACKUP_DEFAULT_ETC /var/opt/splunk
+#ENV SPLUNK_PRODUCT splunk
+#ENV SPLUNK_VERSION 6.3.2
+#ENV SPLUNK_BUILD aaff59bb082c
+#ENV SPLUNK_FILENAME splunk-${SPLUNK_VERSION}-${SPLUNK_BUILD}-Linux-x86_64.tgz
 
 # add splunk:splunk user
 RUN groupadd -r ${SPLUNK_GROUP} \
