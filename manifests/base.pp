@@ -6,7 +6,7 @@ package {'wget':
   ensure => present
 } ->
 exec {'download splunk':
-  command => "/usr/bin/wget -O /tmp/splunk.rpm 'http://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=6.3.2&product=splunk&filename=${splunk_filename}&wget=true'",
+  command => "/usr/bin/wget -O /tmp/splunk.rpm 'http://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=${splunk_version}&product=splunk&filename=${splunk_filename}&wget=true'",
 } ->
 
 exec {'install splunk':
