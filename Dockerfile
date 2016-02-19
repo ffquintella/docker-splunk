@@ -33,7 +33,7 @@ RUN /opt/puppetlabs/puppet/bin/puppet apply -l /tmp/puppet.log /etc/puppet/manif
  yum clean all ; rm -rf /tmp/* ; rm -rf /var/cache/* ; rm -rf /var/tmp/*
 
 # Ports Splunk Web, Splunk Daemon, KVStore, Splunk Indexing Port, Network Input, HTTP Event Collector
-EXPOSE 8000/tcp 8089/tcp 8191/tcp 9997/tcp 1514 8088/tcp
+EXPOSE 8000/tcp 8089/tcp 8191/tcp 9997/tcp 1514/tcp 1514/udp 8088/tcp
 
 WORKDIR /opt/splunk
 

@@ -19,9 +19,7 @@
 
 Current branch:
 
-* `6.3`, `6.3.2`, `latest` - Splunk Enterprise
-* `6.3-light`, `6.3.2-light`, `latest-light` - Splunk Light
-* `6.3-forwarder`, `6.3.2-forwarder`, `latest-forwarder` - Splunk Universal Forwarder
+* `6.3.3`, `6.3.2`, `latest`
 
 For previous versions or newest releases see other branches.
 
@@ -33,7 +31,7 @@ Dockerfiles to build [Splunk](https://splunk.com)
 
 ### Version
 
-* Version: `6.3.2`
+* Version: `6.3.3`
 
 
 ## Installation
