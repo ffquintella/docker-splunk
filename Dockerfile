@@ -2,7 +2,7 @@ FROM ffquintella/docker-puppet:latest
 
 MAINTAINER Felipe Quintella <docker-puppet@felipe.quintella.email>
 
-LABEL version="6.3.3"
+LABEL version="6.3.3.1"
 LABEL description="This image contais the splunk application to be used \
 as a server."
 
@@ -17,6 +17,11 @@ ENV SPLUNK_USER splunk
 ENV SPLUNK_BACKUP_DEFAULT_ETC /var/opt/splunk
 ENV SPLUNK_OPTIMISTIC_ABOUT_FILE_LOCKING 0
 
+# Users needed by the system
+RUN groupadd -g 1000 splunk; adduser --system -u 1000  -g 1000 splunk
+
+# Puppet stuff all the instalation is donne by puppet
+
 ENV FACTER_SPLUNK_VERSION $SPLUNK_VERSION
 ENV FACTER_SPLUNK_FILENAME $SPLUNK_FILENAME
 ENV FACTER_SPLUNK_HOME $SPLUNK_HOME
@@ -25,10 +30,9 @@ ENV FACTER_SPLUNK_USER $SPLUNK_USER
 ENV FACTER_SPLUNK_BACKUP_DEFAULT_ETC $SPLUNK_BACKUP_DEFAULT_ETC
 ENV FACTER_SPLUNK_OPTIMISTIC_ABOUT_FILE_LOCKING $SPLUNK_OPTIMISTIC_ABOUT_FILE_LOCKING
 
-# Puppet stuff all the instalation is donne by puppet
-# Just after it we clean up everthing so the end image isn't too big
 RUN mkdir /etc/puppet; mkdir /etc/puppet/manifests
 COPY manifests/base.pp /etc/puppet/manifests/
+# Just after it we clean up everthing so the end image isn't too big
 RUN /opt/puppetlabs/puppet/bin/puppet apply -l /tmp/puppet.log /etc/puppet/manifests/base.pp ;\
  yum clean all ; rm -rf /tmp/* ; rm -rf /var/cache/* ; rm -rf /var/tmp/*
 
