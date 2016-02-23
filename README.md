@@ -202,12 +202,12 @@ Upgrade example below
 ```
 # Use data volume container to persist data between upgrades
 docker run --name vsplunk -v /opt/splunk/etc -v /opt/splunk/var busybox
-# Start old version of Splunk Enterprise
+# Start old version of Splunk
 docker run --hostname splunk --name splunk --volumes-from=vsplunk -p 8000:8000 -d outcoldman/splunk:6.2.3
-# Stop Splunk Enterprise container
+# Stop Splunk  container
 docker stop splunk
-# Remove Splunk Enterprise container
+# Remove Splunk  container
 docker rm -v splunk
-# Start Splunk Enterprise container with new version
+# Start Splunk container with new version
 docker run --hostname splunk --name splunk --volumes-from=vsplunk -p 8000:8000 -d outcoldman/splunk:6.3.2
 ```
