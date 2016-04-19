@@ -1,1 +1,1 @@
-docker build -t ffquintella/splunk:6.3.3 .
+docker build -t ffquintella/splunk:latest .
