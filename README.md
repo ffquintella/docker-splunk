@@ -19,7 +19,7 @@
 
 Current branch:
 
-* `6.3.3`, `6.3.2`, `latest`
+* `6.4.0`, `6.3.3`, `6.3.2`, `latest`
 
 For previous versions or newest releases see other branches.
 
@@ -28,10 +28,6 @@ For previous versions or newest releases see other branches.
 
 Dockerfiles to build [Splunk](https://splunk.com)
 
-
-### Version
-
-* Version: `6.3.3`
 
 
 ## Installation
