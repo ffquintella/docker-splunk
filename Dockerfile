@@ -2,7 +2,7 @@ FROM ffquintella/docker-puppet:latest
 
 MAINTAINER Felipe Quintella <docker-puppet@felipe.quintella.email>
 
-LABEL version="6.5.0.1"
+LABEL version="6.5.0.2"
 LABEL description="This image contais the splunk application to be used \
 as a server."
 
