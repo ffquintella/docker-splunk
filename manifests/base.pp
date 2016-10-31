@@ -43,7 +43,7 @@ exec {'erase logs':
 if $splunk_optimistic_about_file_locking == "1" {
   exec {'Optimistic':
     path  => '/bin:/sbin:/usr/bin:/usr/sbin',
-    command => "echo OPTIMISTIC_ABOUT_FILE_LOCKING = 1 >> ${splunk_backup_default_etc}/splunk-launch.conf"
+    command => "sudo -HEu ${splunk_user} echo OPTIMISTIC_ABOUT_FILE_LOCKING = 1 >> ${splunk_backup_default_etc}/splunk-launch.conf"
   }
 }
 

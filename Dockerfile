@@ -2,13 +2,13 @@ FROM ffquintella/docker-puppet:latest
 
 MAINTAINER Felipe Quintella <docker-puppet@felipe.quintella.email>
 
-LABEL version="6.4.0.1"
+LABEL version="6.5.0.1"
 LABEL description="This image contais the splunk application to be used \
 as a server."
 
 ENV SPLUNK_PRODUCT splunk enterprise
-ENV SPLUNK_VERSION 6.4.0
-ENV SPLUNK_BUILD f2c836328108
+ENV SPLUNK_VERSION 6.5.0
+ENV SPLUNK_BUILD 59c8927def0f
 ENV SPLUNK_FILENAME splunk-${SPLUNK_VERSION}-${SPLUNK_BUILD}-linux-2.6-x86_64.rpm
 
 ENV SPLUNK_HOME /opt/splunk

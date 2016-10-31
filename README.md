@@ -19,7 +19,9 @@
 
 Current branch:
 
-* `6.4.0`, `6.3.3`, `6.3.2`, `latest`
+* `6.5.0.1`, `latest`
+* `6.4.0.1`
+* `6.3.3`, `6.3.2`
 
 For previous versions or newest releases see other branches.
 
