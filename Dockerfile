@@ -2,7 +2,7 @@ FROM ffquintella/docker-puppet:latest
 
 MAINTAINER Felipe Quintella <docker-puppet@felipe.quintella.email>
 
-LABEL version="6.5.0.2"
+LABEL version="6.5.0.3"
 LABEL description="This image contais the splunk application to be used \
 as a server."
 
@@ -34,7 +34,7 @@ RUN mkdir /etc/puppet; mkdir /etc/puppet/manifests
 COPY manifests/base.pp /etc/puppet/manifests/
 # Just after it we clean up everthing so the end image isn't too big
 RUN /opt/puppetlabs/puppet/bin/puppet apply -l /tmp/puppet.log /etc/puppet/manifests/base.pp ;\
- yum clean all ; rm -rf /tmp/* ; rm -rf /var/cache/* ; rm -rf /var/tmp/*
+ yum clean all ; rm -rf /tmp/* ; rm -rf /var/cache/* ; rm -rf /var/tmp/*; mkdir /home/splunk; chown splunk:splunk /home/splunk
 
 # Ports Splunk Web, Splunk Daemon, KVStore, Splunk Indexing Port, Network Input, HTTP Event Collector
 EXPOSE 8000/tcp 8089/tcp 8191/tcp 9997/tcp 1514/tcp 1514/udp 8088/tcp
