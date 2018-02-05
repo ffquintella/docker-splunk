@@ -2,6 +2,8 @@
 
 set -e
 
+chown -R splunk:splunk /opt/splunk
+
 if [ "$1" = 'splunk' ]; then
   shift
   sudo -HEu ${SPLUNK_USER} ${SPLUNK_HOME}/bin/splunk "$@"
