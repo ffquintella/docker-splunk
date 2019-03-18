@@ -5,6 +5,18 @@ package {'sudo':
 package {'wget':
   ensure => present
 } ->
+
+
+package {'which':
+  ensure => present
+} ->
+package {'shadow-utils':
+  ensure => present
+} ->
+package {'net-tools':
+  ensure => present
+} ->
+
 exec {'download splunk':
   command => "/usr/bin/wget -O /tmp/splunk.rpm 'http://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=${splunk_version}&product=splunk&filename=${splunk_filename}&wget=true'",
   timeout => 1800

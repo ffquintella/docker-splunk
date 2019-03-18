@@ -1,14 +1,17 @@
-FROM ffquintella/docker-puppet:latest
+FROM ffquintella/docker-puppet:1.5.1
 
 MAINTAINER Felipe Quintella <docker-puppet@felipe.quintella.email>
 
-LABEL version="7.0.2.1"
+#https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.4.2&product=splunk&filename=splunk-7.2.4.2-fb30470262e3-Linux-x86_64.tgz&wget=true
+#https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.4.2&product=splunk&filename=splunk-7.2.4.2-fb30470262e3-linux-2.6-x86_64.rpm&wget=true
+
+LABEL version="7.2.4.2"
 LABEL description="This image contais the splunk application to be used \
 as a server."
 
 ENV SPLUNK_PRODUCT splunk enterprise
-ENV SPLUNK_VERSION 7.0.2
-ENV SPLUNK_BUILD 03bbabbd5c0f
+ENV SPLUNK_VERSION 7.2.4.2
+ENV SPLUNK_BUILD fb30470262e3
 ENV SPLUNK_FILENAME splunk-${SPLUNK_VERSION}-${SPLUNK_BUILD}-linux-2.6-x86_64.rpm
 
 ENV SPLUNK_HOME /opt/splunk
@@ -33,11 +36,11 @@ ENV FACTER_SPLUNK_OPTIMISTIC_ABOUT_FILE_LOCKING $SPLUNK_OPTIMISTIC_ABOUT_FILE_LO
 RUN mkdir /etc/puppet; mkdir /etc/puppet/manifests
 COPY manifests/base.pp /etc/puppet/manifests/
 # Just after it we clean up everthing so the end image isn't too big
-RUN /opt/puppetlabs/puppet/bin/puppet apply -l /tmp/puppet.log /etc/puppet/manifests/base.pp ;\
+RUN /opt/puppetlabs/puppet/bin/puppet apply  /etc/puppet/manifests/base.pp ;\
  yum clean all ; rm -rf /tmp/* ; rm -rf /var/cache/* ; rm -rf /var/tmp/*; mkdir /home/splunk; chown splunk:splunk /home/splunk
 
 # Ports Splunk Web, Splunk Daemon, KVStore, Splunk Indexing Port, Network Input, HTTP Event Collector
-EXPOSE 8000/tcp 8089/tcp 8191/tcp 9997/tcp 1514/tcp 1514/udp 8088/tcp
+EXPOSE 8000/tcp 8089/tcp 8191/tcp 9997/tcp 1514/tcp 1514/udp 8088/tcp 8080/tcp 8080/udp 9887/tcp 9887/udp 514/udp 
 
 WORKDIR /opt/splunk
 
