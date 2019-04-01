@@ -5,13 +5,13 @@ MAINTAINER Felipe Quintella <docker-puppet@felipe.quintella.email>
 #https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.4.2&product=splunk&filename=splunk-7.2.4.2-fb30470262e3-Linux-x86_64.tgz&wget=true
 #https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.4.2&product=splunk&filename=splunk-7.2.4.2-fb30470262e3-linux-2.6-x86_64.rpm&wget=true
 
-LABEL version="7.2.4.2"
+LABEL version="7.2.5.1"
 LABEL description="This image contais the splunk application to be used \
 as a server."
 
 ENV SPLUNK_PRODUCT splunk enterprise
-ENV SPLUNK_VERSION 7.2.4.2
-ENV SPLUNK_BUILD fb30470262e3
+ENV SPLUNK_VERSION 7.2.5.1
+ENV SPLUNK_BUILD 962d9a8e1586
 ENV SPLUNK_FILENAME splunk-${SPLUNK_VERSION}-${SPLUNK_BUILD}-linux-2.6-x86_64.rpm
 
 ENV SPLUNK_HOME /opt/splunk
