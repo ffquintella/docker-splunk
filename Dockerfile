@@ -1,4 +1,4 @@
-FROM ffquintella/docker-puppet:1.5.1
+FROM ffquintella/docker-puppet:8.7.2
 
 MAINTAINER Felipe Quintella <docker-puppet@felipe.quintella.email>
 
