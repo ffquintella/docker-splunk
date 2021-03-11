@@ -18,7 +18,7 @@ package {'net-tools':
 } ->
 
 exec {'download splunk':
-  command => "/usr/bin/wget -O /tmp/splunk.rpm 'http://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=${splunk_version}&product=splunk&filename=${splunk_filename}&wget=true'",
+  command => "/usr/bin/wget -O /tmp/splunk.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.1.2&product=splunk&filename=splunk-8.1.2-545206cc9f70-linux-2.6-x86_64.rpm&wget=true'",
   timeout => 1800
 } ->
 
