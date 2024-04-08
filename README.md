@@ -19,7 +19,9 @@
 
 Current branch:
 
-* `7.0.2.1`,`latest`
+* `9.2.1.1`,`latest`
+* `9.0.1.1`
+* `7.0.2.1`
 * `6.5.2.1`
 * `6.5.0.3`,`6.5.0.2`,`6.5.0.1`
 * `6.4.0.1`
@@ -29,7 +31,9 @@ For previous versions or newest releases see other branches.
 
 ### Change log
 
-- `7.0.2.1`: Latest: Upgrade to Splunk 7.0.2
+- `9.2.1.1`: Latest: Upgrade to Splunk 9.2.1
+- `9.0.2.1`: Upgrade to Splunk 9.0.2
+- `7.0.2.1`: Upgrade to Splunk 7.0.2
 - `6.5.2.1`: Upgrade to Splunk 6.5.2
 - `6.5.0.3`: Small fix on the execution of commands creating /home/splunk
 

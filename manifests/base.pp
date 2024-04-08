@@ -1,12 +1,9 @@
 package {'sudo':
   ensure => present
-}
-
+} ->
 package {'wget':
   ensure => present
 } ->
-
-
 package {'which':
   ensure => present
 } ->
@@ -14,6 +11,9 @@ package {'shadow-utils':
   ensure => present
 } ->
 package {'net-tools':
+  ensure => present
+} ->
+package {'procps':
   ensure => present
 } ->
 
@@ -34,7 +34,7 @@ file {'/var/opt/splunk':
 
 exec {'copy etc':
   path  => '/bin:/sbin:/usr/bin:/usr/sbin',
-  command => "cp -R ${splunk_home}/etc ${splunk_backup_default_etc} ; rm -fR ${splunk_home}/etc"
+  command => "cp -a ${splunk_home}/etc ${splunk_backup_default_etc} "
 } ->
 
 

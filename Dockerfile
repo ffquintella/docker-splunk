@@ -1,18 +1,23 @@
-FROM ffquintella/docker-puppet:8.7.2
+FROM ffquintella/docker-puppet:r9p8.5 as development
+
+FROM --platform=linux/amd64 ffquintella/docker-puppet:r9p8.5 as production
 
 MAINTAINER Felipe Quintella <docker-puppet@felipe.quintella.email>
 
 #https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.4.2&product=splunk&filename=splunk-7.2.4.2-fb30470262e3-Linux-x86_64.tgz&wget=true
 #https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.4.2&product=splunk&filename=splunk-7.2.4.2-fb30470262e3-linux-2.6-x86_64.rpm&wget=true
+#wget -O splunk-9.0.0-6818ac46f2ec-linux-2.6-x86_64.rpm "https://download.splunk.com/products/splunk/releases/9.0.0/linux/splunk-9.0.0-6818ac46f2ec-linux-2.6-x86_64.rpm"
+#wget -O splunk-9.0.3-dd0128b1f8cd-linux-2.6-x86_64.rpm "https://download.splunk.com/products/splunk/releases/9.0.3/linux/splunk-9.0.3-dd0128b1f8cd-linux-2.6-x86_64.rpm"
+#wget -O splunk-9.2.1-78803f08aabb.x86_64.rpm "https://download.splunk.com/products/splunk/releases/9.2.1/linux/splunk-9.2.1-78803f08aabb.x86_64.rpm"
 
-LABEL version="8.2.4.1"
+LABEL version="9.2.1.1"
 LABEL description="This image contais the splunk application to be used \
 as a server."
 
 ENV SPLUNK_PRODUCT splunk enterprise
-ENV SPLUNK_VERSION 8.2.4
-ENV SPLUNK_BUILD 87e2dda940d1
-ENV SPLUNK_FILENAME splunk-${SPLUNK_VERSION}-${SPLUNK_BUILD}-linux-2.6-x86_64.rpm
+ENV SPLUNK_VERSION 9.2.1
+ENV SPLUNK_BUILD 78803f08aabb
+ENV SPLUNK_FILENAME splunk-${SPLUNK_VERSION}-${SPLUNK_BUILD}.x86_64.rpm
 
 ENV SPLUNK_HOME /opt/splunk
 ENV SPLUNK_GROUP splunk
