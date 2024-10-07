@@ -1,16 +1,16 @@
-package {'sudo':
+package { 'sudo':
   ensure => present
-} ->
-package {'wget':
+}
+->package { 'wget':
   ensure => present
-} ->
-package {'which':
+}
+->package { 'which':
   ensure => present
-} ->
-package {'shadow-utils':
+}
+->package { 'shadow-utils':
   ensure => present
-} ->
-package {'net-tools':
+}
+->package { 'net-tools':
   ensure => present
 } ->
 package {'procps':
