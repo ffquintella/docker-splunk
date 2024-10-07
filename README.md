@@ -46,13 +46,9 @@ Dockerfiles to build [Splunk](https://splunk.com)
 
 ## Installation
 
-Pull the image from docker hub.
+Since docker hub stablished pull limits we no longer make de image avaliable there. If you whant to use this image you will need to find your own hosting
 
-```bash
-docker pull ffquintella/docker-splunk
-```
-
-Alternately you can build the image locally.
+You can build the image locally.
 
 ```bash
 git clone https://github.com/ffquintella/docker-splunk.git
@@ -65,7 +61,7 @@ cd docker-splunk
 To manually start Splunk Enterprise container
 
 ```bash
-docker run --hostname splunk -p 8000:8000 -d ffquintella/docker-splunk
+docker run --hostname splunk -p 8000:8000 -d yourHosting/docker-splunk
 ```
 
 This docker image has two data volumes `/opt/splunk/etc` and `/opt/splunk/var` (See [Data Store](#data-store)). To avoid losing any data when container is stopped/deleted mount these volumes from docker volume containers (see [Managing data in containers](https://docs.docker.com/userguide/dockervolumes/))
