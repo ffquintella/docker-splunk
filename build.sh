@@ -1,1 +1,1 @@
-docker build -t ffquintella/splunk:latest --target production .
+docker build -t ffquintella/docker-splunk:latest --target production .
