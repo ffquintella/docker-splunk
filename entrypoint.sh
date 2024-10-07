@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-
+ 
 chown -R splunk:splunk /opt/splunk
 
 if [ "$1" = 'splunk' ]; then
